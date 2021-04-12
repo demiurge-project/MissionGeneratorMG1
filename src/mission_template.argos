@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<argos-configuration>
+  <!-- ************* -->
+  <!-- * Framework * -->
+  <!-- ************* -->
+  <framework>
+    <experiment length="$experimentDuration"
+                ticks_per_second="10" random_seed="0"/>
+  </framework>
+
+  <!-- ****************** -->
+  <!-- * Loop functions * -->
+  <!-- ****************** -->
+  <loop_functions library="/home/aligot/Desktop/Arena/MissionGeneratorCpp/build/demiurge/generic-loop-functions/libargos3_demiurge_generic_loopfunc.so"
+      label="generic_$missionType">
+   <params dist_radius="1.2" number_robots="5" mission_description="$missionDescription"/>
+  </loop_functions>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+  <controllers>
+	<!-- TRANSMITTER -->
+    <automode_controller id="automode"
+                        library="/home/aligot/Desktop/Arena/AutoMoDe-GenericLoopFunc/build/src/libautomode.so">
+        <actuators>
+          <epuck_wheels implementation="default" noise_std_dev="0.05"/>
+          <epuck_rgb_leds implementation="default" medium="leds"/>
+          <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" range="0.5"/>
+        </actuators>
+        <sensors>
+          <epuck_proximity implementation="default" show_rays="false" noise_level="0.0" calibrated="true"/>
+          <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" calibrated="true" real_range_noise="true" loss_probability="0.85" show_rays="false"/>
+          <epuck_light implementation="default" show_rays="false" noise_level="0.05" calibrated="true"/>
+          <epuck_ground implementation="rot_z_only" noise_level="0.05" calibrated="true"/>
+          <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
+        </sensors>
+      <params fsm-config="--nstates 1 --s0 0 --rwm0 2"/>
+    </automode_controller>
+
+  </controllers>
+
+  <!-- ********* -->
+  <!-- * Arena * -->
+  <!-- ********* -->
+  <arena size="4, 6, 1" center="0,0,0">
+
+  <!-- ********** -->
+  <!-- * E-Puck * -->
+  <!-- ********** -->
+  <distribute>
+    <position method="uniform" min="-1,-1,0" max="1,1,0" />
+    <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
+    <entity quantity="$numberRobots" max_trials="100">
+      <e-puck id="epuck">
+       <controller config="automode" />
+      </e-puck>
+    </entity>
+  </distribute>
+
+  <!-- Change the floor here -->
+  <floor id="floor" source="loop_functions" pixels_per_meter="300"/>
+
+  <!-- Light here -->
+  $lightDescription
+
+  <!-- Arena here -->
+  $arenaDescription
+
+
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+  <physics_engines>
+    <dynamics2d id="dyn2d" />
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <led id="leds" grid_size="1,1,1"/>
+    <range_and_bearing id="ircom"/>
+    <range_and_bearing id="rab"/>
+  </media>
+
+  <!-- ***************** -->
+  <!-- * Visualization * -->
+  <!-- ***************** -->
+  <visualization>
+    <qt-opengl>
+      <camera>
+        <placement idx="0"
+                   position="0,0,4.5"
+                   look_at="0,0,0"
+                   lens_focal_length="30" />
+      </camera>
+    </qt-opengl>
+  </visualization>
+
+</argos-configuration>

@@ -1,0 +1,30 @@
+# Comment: everything after # should be disregarded by the parser
+missionClass    --mc       categorical      ('foraging','homing','aggXOR')      (0.2,0.4,0.4)       | NA
+expDuration     --ed      categorical      (60,120,180)                        (0.25,0.375,0.375)  | NA
+robots          --r       integer          (15,20)                                                 | NA
+arenaShape      --ash     categorical      ('trigon','tetragon','hexagon')                         | NA
+arenaSide       --asi     real             (2.4,2.4)                                             | arenaShape == 'trigon'
+arenaSide       --asi     real             (1.94,1.94)                                               | arenaShape == 'tetragon'
+arenaSide       --asi     real             (1.29,1.29)                                             | arenaShape == 'hexagon'
+arenaFloorCol   --afc     categorical      ('gray')                                                | NA
+initialPosition --ip      categorical      ('uniform','notpatches','oneside')                      | NA
+typeObjFunc     --tof     categorical      ('anytime','endtime')               (0.5,0.5)           | mission == 'homing'
+typeObjFunc     --tof     categorical      ('anytime','endtime')               (0.5,0.5)           | mission == 'aggXOR'
+light           --l       categorical      ('on','off')                        (0.85,0.15)         | mission == 'foraging'
+light           --l       categorical      ('on','off')                        (0.30,0.70)         | mission == 'homing'
+light           --l       categorical      ('on','off')                        (0.30,0.70)         | mission == 'aggXOR'
+### Foraging
+numberNests        --nn   categorical      (1,2)                               (0.95,0.05)         | mission == 'foraging'
+colorNest          --cnf  categorical      ('white','black')                   (0.5,0.5)           | mission == 'foraging'
+numberFoodSource   --nfs  categorical      (1,2,3)                             (0.5,0.4,0.1)       | mission == 'foraging'
+numberObstacles    --no   categorical      (0,1,2,3)                           (0.2,0.4,0.3,0.1)   | mission == 'foraging'
+### Homing
+numberPatches      --nn   categorical      (1,2,3)                             (0.55,0.30,0.15)    | mission == 'homing'
+colorHome          --cnf  categorical      ('white','black')                   (0.5,0.5)           | mission == 'homing'
+numberObstacles    --no   categorical      (0,1,2,3)                           (0.2,0.4,0.3,0.1)   | mission == 'homing'
+### AggXOR
+numberHomes        --nh   categorical      (2,3)                               (0.8,0.2)           | mission == 'aggXOR'
+numberDistractionPatches     --ndp   categorical      (0,1)                               (0.60,0.40)         | mission == 'aggXOR' & numberHomes == 2
+numberDistractionPatches     --ndp   categorical      (0,0)                               (0.90,0.10)         | mission == 'aggXOR' & numberHomes == 3
+colorHome          --cnf  categorical      ('white','black')                   (0.5,0.5)           | mission == 'aggXOR'
+numberObstacles    --no   categorical      (0,1,2,3)                           (0.4,0.3,0.2,0.1)   | mission == 'aggXOR'
