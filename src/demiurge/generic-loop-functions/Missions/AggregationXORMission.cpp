@@ -129,8 +129,6 @@ void AggregationXORMission::PostStep() {
     m_mapHomesData[i] = 0;
   }
 
-  Real fScoreTemp = m_fCurrentTimeScore;
-
   CSpace::TMapPerType& tEpuckMap = GetSpace().GetEntitiesByType("epuck");
   CVector2 cEpuckPosition(0,0);
   for (CSpace::TMapPerType::iterator it = tEpuckMap.begin(); it != tEpuckMap.end(); ++it) {

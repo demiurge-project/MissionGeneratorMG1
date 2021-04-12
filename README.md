@@ -9,7 +9,7 @@ after compilation
 - 'generated_missions' Empty folder that will contain the argos configuration files and a text file containing all string representation of the missions after the execution of mission_generator
 - 'params/configurationParametersMG1.txt' The parameters of MG1  
 - 'src' The source files of the package
-    - 'argos3' Symbolic link to ARGoS3.
+    - 'argos3' Symbolic link to the current folder for compliance with ARGoS3.
     - 'cmake' The .cmake files.
     - 'demiurge/generic-loop-functions/Arenas' The source files of the arenas (walls, floor patches, lights, obstacles, etc.)
     - 'demiurge/generic-loop-functions/Missions' The source files of the missions (constraints on the arena, objective function, etc.)

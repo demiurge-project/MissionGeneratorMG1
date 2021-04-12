@@ -263,10 +263,6 @@ BaseArena* GenericLoopFunctions::HandleArena(const std::string& str_arena_type) 
     pcArena = new TrigonArena();
   } else if (str_arena_type == "hexagon") {
     pcArena = new HexagonArena();
-  } else if (str_arena_type == "dodecagon") {
-    pcArena = new DodecagonArena();
-  } else if (str_arena_type == "heart") {
-    pcArena = new HeartArena();
   }
   return pcArena;
 }
@@ -368,10 +364,6 @@ void GenericLoopFunctions::Initialize() {
     m_pcArena = new TrigonArena();
   } else if (strMissionType == "'hexagon'") {
     m_pcArena = new HexagonArena();
-  } else if (strMissionType == "'dodecagon'") {
-    m_pcArena = new DodecagonArena();
-  } else if (strMissionType == "'heart'") {
-    m_pcArena = new HeartArena();
   }
 
   it = GetVariableFromDictionary("arenaSide");

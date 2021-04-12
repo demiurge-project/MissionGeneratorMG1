@@ -22,8 +22,6 @@
 #include <argos3/demiurge/generic-loop-functions/Arenas/TetragonArena.h>
 #include <argos3/demiurge/generic-loop-functions/Arenas/TrigonArena.h>
 #include <argos3/demiurge/generic-loop-functions/Arenas/HexagonArena.h>
-#include <argos3/demiurge/generic-loop-functions/Arenas/DodecagonArena.h>
-#include <argos3/demiurge/generic-loop-functions/Arenas/HeartArena.h>
 
 #include <argos3/demiurge/generic-loop-functions/Arenas/Objects/Light.h>
 #include <argos3/demiurge/generic-loop-functions/Arenas/Objects/Patch.h>

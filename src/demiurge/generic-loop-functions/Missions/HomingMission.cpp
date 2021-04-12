@@ -108,7 +108,6 @@ void HomingMission::Reset() {
 /****************************************/
 
 void HomingMission::PostStep() {
-  UInt32 unScoreTemp = m_unRobotsAtHome;
   m_unRobotsAtHome = 0;
 
   CSpace::TMapPerType& tEpuckMap = GetSpace().GetEntitiesByType("epuck");
